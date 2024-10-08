@@ -3,7 +3,7 @@
 Plugin Name: Auto iFrame
 Plugin URI: http://toolstack.com/auto-iframe
 Description: A quick and easy shortcode to embed iframe's that resize to the content of the remote site.
-Version: 1.7
+Version: 1.8
 Author: Greg Ross
 Author URI: http://toolstack.com/
 License: GPL2
@@ -117,20 +117,20 @@ function auto_iframe_shortcode( $atts ) {
 
 	// Get the link.
 	$link = '';
-	if( array_key_exists( 'link', $atts ) ) { $link = htmlentities(trim( $atts['link'] ), ENT_QUOTES ); }
+	if( array_key_exists( 'link', $atts ) ) { $link = htmlentities( trim( $atts['link'] ), ENT_QUOTES ); }
 
 	// If no link has been passed in, there's nothing to do so just return a blank string.
 	if( $link == '' ) { return ''; }
 
 	// Get the rest of the attributes.
 	$tag = 'auto-iframe';
-	if( array_key_exists( 'tag', $atts ) ) { $tag = htmlentities(trim( $atts['tag'] ), ENT_QUOTES ); }
+	if( array_key_exists( 'tag', $atts ) ) { $tag = htmlentities( esc_js( trim( $atts['tag'] ) ), ENT_QUOTES ); }
 
 	$width = '100%';
-	if( array_key_exists( 'width', $atts ) ) { $width = htmlentities(trim( $atts['width'] ), ENT_QUOTES ); }
+	if( array_key_exists( 'width', $atts ) ) { $width = htmlentities( trim( $atts['width'] ), ENT_QUOTES ); }
 
 	$height = 'auto';
-	if( array_key_exists( 'height', $atts ) ) { $height = htmlentities(trim( $atts['height'] ), ENT_QUOTES ); }
+	if( array_key_exists( 'height', $atts ) ) { $height = htmlentities( trim( $atts['height'] ), ENT_QUOTES ); }
 
 	$autosize = true;
 	if( array_key_exists( 'autosize', $atts ) ) { if( strtolower( $atts['autosize'] ) != 'yes' ) { $autosize = false; } ; }
@@ -139,7 +139,7 @@ function auto_iframe_shortcode( $atts ) {
 	if( array_key_exists( 'fudge', $atts ) ) { $fudge = intval( $atts['fudge'] ); }
 
 	$border = '0';
-	if( array_key_exists( 'border', $atts ) ) { $border = htmlentities(trim( $atts['border'] ), ENT_QUOTES ); }
+	if( array_key_exists( 'border', $atts ) ) { $border = htmlentities( trim( $atts['border'] ), ENT_QUOTES ); }
 
 	$scroll = 'no';
 	if( array_key_exists( 'scroll', $atts ) ) { if( array_key_exists( 'autosize', $atts ) && strtolower( $atts['autosize'] ) != 'yes' ) { $scroll = 'yes'; } ; }
