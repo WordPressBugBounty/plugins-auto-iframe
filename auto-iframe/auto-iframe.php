@@ -3,7 +3,7 @@
 Plugin Name: Auto iFrame
 Plugin URI: http://toolstack.com/auto-iframe
 Description: A quick and easy shortcode to embed iframe's that resize to the content of the remote site.
-Version: 1.8
+Version: 1.9
 Author: Greg Ross
 Author URI: http://toolstack.com/
 License: GPL2
@@ -118,6 +118,9 @@ function auto_iframe_shortcode( $atts ) {
 	// Get the link.
 	$link = '';
 	if( array_key_exists( 'link', $atts ) ) { $link = htmlentities( trim( $atts['link'] ), ENT_QUOTES ); }
+
+	// Check to see if this is a javascript link, if so, don't process it.
+	if( preg_match('/^javascript:/i', $link ) ) { return ''; }
 
 	// If no link has been passed in, there's nothing to do so just return a blank string.
 	if( $link == '' ) { return ''; }
